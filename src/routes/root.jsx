@@ -1,14 +1,17 @@
 import { getContacts, createContact } from "../contacts";
+import './negro.css'
 import {
     Outlet,
     Link,
     useLoaderData,
     Form,
+    redirect,
 } from "react-router-dom";
 
 export async function action() {
     const contact = await createContact();
-    return { contact };
+    return redirect(`/contacts/${contact.id}/edit`);
+    //return { contact };
 }
 
 export async function loader() {
@@ -25,6 +28,7 @@ export default function Root() {
                 <div>
                     <form id="search-form" role="search">
                         <input
+                            className="negro"
                             id="q"
                             aria-label="Search contacts"
                             placeholder="Search"
